@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
+    <title>Hacker News</title>
+</head>
+<body>
+    <div id="app-container">
+        <div id="app-header">
+            <header class="header">
+                <div class="flex">
+                    <span class="header-title">
+                        <img class="header-logo" src="./img/ycombinatoricon.png">
+                        Hacker News
+                    </span>
+                    <span class="header-links">
+                        <a href="#/" class="header-link">top</a>
+                        <a href="#/new" class="header-link">new</a>
+                        <a href="#/ask" class="header-link">ask</a>
+                        <a href="#/show" class="header-link">show</a>
+                        <a href="#/favorites" class="header-link">favorites</a>
+                    </span>
+                </div>
+            </header>
+        </div>
+        <div id="route-container">
+            <div id="router-outlet"></div>
+        </div>
+    </div>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
