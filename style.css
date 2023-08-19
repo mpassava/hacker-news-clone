@@ -139,11 +139,9 @@ input {
 .header {
   background-color: #ff6600;
   white-space: nowrap;
-  padding: 0.2rem;
+  padding: 0.25rem;
+  padding-left: 0.2rem;
   color: black;
-  justify-content: space-between;
-  /* align-items: center;
-  display: flex; */
 }
 
 .header-title {
@@ -154,18 +152,28 @@ input {
   text-decoration: none;
   font-size: 1.1rem;
   margin-right: 10px;
+  line-height: 100%;
+  height: 24px;
 }
 
 .header-logo {
-  height: 25px;
+  height: 24px;
   border: 1px solid white;
   margin-right: 5px;
 }
 
+.header-links {
+    display: inline-block;
+    height: 21px;
+    /* align-items: center; */
+    /* line-height: 100%; */
+}
+
 .header-link {
   margin-left: 0.2rem;
-  color: white !important;
+  color: black !important;
   text-decoration: none;
+  margin: 5px;
 }
 
 .header-button {
