@@ -11,9 +11,10 @@ export default class RouterHandler {
         const routes = [
             { path: '/', page: Stories },
             { path: '/new', page: Stories },
-            { path: '/past', page: Stories },
+            { path: '/best', page: Stories },
             { path: '/ask', page: Stories },
-            { path: '/show', page: Stories }
+            { path: '/show', page: Stories },
+            { path: '/jobs', page: Stories }
         ]
 
         routes.forEach(({ path, page })=> {
