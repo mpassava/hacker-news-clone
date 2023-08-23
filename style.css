@@ -208,6 +208,7 @@ textarea {
 #route-container {
   background-color: rgb(246, 246, 239);
   padding: 0.5rem 1.2rem;
+  overflow-wrap: break-word;
 }
 
 .comment-header {

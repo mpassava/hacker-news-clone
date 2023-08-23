@@ -5,7 +5,7 @@ export default async function Stories(path) {
     const hasStories = stories.length > 0;
 
     const storiesHTML = hasStories ? 
-        stories.map(story => `<div>${story}</div>`) : ['No stories'];
+        stories.map(story => `<div>${JSON.stringify(story)}</div>`) : ['No stories'];
     
     view.innerHTML = storiesHTML.join('');
 
@@ -42,20 +42,20 @@ async function getStories(path) {
 
     const response = await fetch(`https://hacker-news.firebaseio.com${path}`);
     let stories = await response.json()
-    stories = stories.slice(0, 1);
+    stories = stories.slice(0, 20);
+    const storiesMasterList = await getStoryJSON(stories)
 
-    console.log(getStoryJSON(stories));
-    // return stories;
+    console.log(storiesMasterList);
+    return storiesMasterList;
 }
 
 async function getStoryJSON(arr) {
     const getObject = async story => {
         const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${story}.json?print=pretty`);
         const storyObj = await response.json();
-        console.log(storyObj)
-        // return storyObj;
+        return storyObj;
     }
 
-    const storiesMasterList = arr.map(story => getObject(story));
+    const storiesMasterList = await Promise.all(arr.map( story => getObject(story)));
     return storiesMasterList;
 }
