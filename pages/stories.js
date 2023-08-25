@@ -1,17 +1,17 @@
+import Story from "../components/story.js";
 import view from "../utils/view.js";
 
 export default async function Stories(path) {
     const stories = await getStories(path);
     const hasStories = stories.length > 0;
 
-    const storiesHTML = hasStories ? 
-        stories.map(story => `<div>${JSON.stringify(story)}</div>`) : ['No stories'];
+    // const storiesHTML = hasStories ? 
+    //     stories.map(story => Story(story)) : ['No stories'];
     
-    view.innerHTML = storiesHTML.join('');
+    // view.innerHTML = storiesHTML.join('');
 
-    // view.innerHTML = `<div>
-    //     ${hasStories ? stories.map(story => JSON.stringify(story)) : 'No stories'}
-    // </div>`;
+    view.innerHTML = hasStories ? 
+        stories.map((story, i) => Story({ ...story, index: i + 1 })).join('') : 'No stories';
 }
 
 async function getStories(path) {
@@ -37,25 +37,20 @@ async function getStories(path) {
         default:
             break;
     }
-    // const isHomeRoute = path === '/';
-    // if (isHomeRoute) path = '/v0/topstories.json?print=pretty';
-
+    
     const response = await fetch(`https://hacker-news.firebaseio.com${path}`);
-    let stories = await response.json()
-    stories = stories.slice(0, 20);
-    const storiesMasterList = await getStoryJSON(stories)
+    const storyIDs = await response.json().then(response => response.slice(0, 20))
+    
+    const stories = getStoryJSON(storyIDs)
 
-    console.log(storiesMasterList);
-    return storiesMasterList;
+    return stories;
 }
 
-async function getStoryJSON(arr) {
-    const getObject = async story => {
+function getStoryJSON(arr) {
+    const stories = Promise.all(arr.map(async story => {
         const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${story}.json?print=pretty`);
         const storyObj = await response.json();
         return storyObj;
-    }
-
-    const storiesMasterList = await Promise.all(arr.map( story => getObject(story)));
-    return storiesMasterList;
+    }));
+    return stories;
 }
