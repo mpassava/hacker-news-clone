@@ -1,11 +1,11 @@
 export default function Story(story) {
     
-    const domain = story.url ? `(${story.url.replace('https://', '').split('/')[0]})` : '';
-
+    const domain = story.url ? `(${story.url.split('/')[2]})` : '';
+    
     return `
         <div class="story">
             <div>
-                <span class="gray">${story.index}.</span>
+                <span class="gray">${story.index ? (`${story.index}.`) : ''}</span>
                 <span class="upvote">▲</span>
                 <a href="${story.url}">${story.title}</a>
                 <span>${domain}</span>
