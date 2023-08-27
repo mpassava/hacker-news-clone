@@ -5,11 +5,6 @@ export default async function Stories(path) {
     const stories = await getStories(path);
     const hasStories = stories.length > 0;
 
-    // const storiesHTML = hasStories ? 
-    //     stories.map(story => Story(story)) : ['No stories'];
-    
-    // view.innerHTML = storiesHTML.join('');
-
     view.innerHTML = hasStories ? 
         stories.map((story, i) => Story({ ...story, index: i + 1 })).join('') : 'No stories';
 }
@@ -41,7 +36,7 @@ async function getStories(path) {
     const response = await fetch(`https://hacker-news.firebaseio.com${path}`);
     const storyIDs = await response.json().then(response => response.slice(0, 20))
     
-    const stories = getStoryJSON(storyIDs)
+    const stories = await getStoryJSON(storyIDs);
 
     return stories;
 }

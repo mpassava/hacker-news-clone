@@ -1,7 +1,6 @@
 export default function Story(story) {
     
     const domain = story.url ? `(${story.url.replace('https://', '').split('/')[0]})` : '';
-    console.log(story);
 
     return `
         <div class="story">
@@ -15,10 +14,12 @@ export default function Story(story) {
                 <div class="gray">
                     ${story.score} points by ${story.by}
                     |
-                    <a href="#/item?id=${story.id}">${story.id}</a>
+                    <a href="#/item?id=${story.id}">
+                        ${story.descendants} comments
+                    </a>
                     |
                     <span class="favorite">
-                        <img class="heart" src="https://icon.now.sh/heart/ccc">
+                        <img class="heart" src="../img/heart.png">
                         Add To Favorites
                     </span>
                 </div>
