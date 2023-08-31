@@ -49,6 +49,12 @@ header .flex a {
   padding-bottom: 0.5em;
 }
 
+pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 hr {
   display: block;
   height: 1px;
@@ -214,6 +220,7 @@ textarea {
 .comment-header {
   color: #828282;
   margin: 0;
+  margin-bottom: 1em;
   font-size: 0.75rem;
 }
 
@@ -229,7 +236,7 @@ textarea {
 
 .nested-comments-0 {
   margin-left: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 }
 
 .nested-comments-1 {
