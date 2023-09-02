@@ -1,9 +1,12 @@
-import Story from "../components/story.js";
+import Story from "../components/Story.js";
 import Comment from "../components/Comment.js";
 import view from "../utils/view.js";
 import baseUrl from "../utils/baseUrl.js";
+import checkFavorite from "../utils/checkFavorite.js";
+import store from "../store.js";
 
 export default async function Item() {
+    const { favorites } = store.getState();
     let story = null;
     let hasComments = false;
     let hasError = false;
@@ -23,12 +26,24 @@ export default async function Item() {
     } else {
         view.innerHTML = `
             <div>
-                ${Story(story)}
+                ${Story({ ...story, isFavorite: checkFavorite(favorites, story) })}
             </div>
             <hr/>
             ${hasComments ? story.comments.map(comment => Comment(comment)).join('') : 'No comments'}
         `
     }
+
+    // document.querySelectorAll('.favorite').forEach(favoriteButton => {
+    //     favoriteButton.addEventListener('click', async function() {
+    //         const story = JSON.parse(this.dataset.story);
+    //         const isFavorited = checkFavorite(favorites, story);
+    //         store.dispatch({
+    //             type: isFavorited ? 'REMOVE_FAVORITE' : 'ADD_FAVORITE',
+    //             payload: { favorite: story }
+    //         });
+    //         await Item();
+    //     })
+    // })
 }
 
 async function getStory() {

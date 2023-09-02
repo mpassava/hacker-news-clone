@@ -1,4 +1,4 @@
-import Story from "../components/story.js";
+import Story from "../components/Story.js";
 import view from "../utils/view.js";
 import baseUrl from "../utils/baseUrl.js";
 import checkFavorite from "../utils/checkFavorite.js";
