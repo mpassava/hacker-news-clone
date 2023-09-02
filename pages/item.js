@@ -47,6 +47,7 @@ async function getComments(data) {
         const commentsArr = Promise.all(data.map(async commentID => {
             const response = await fetch(`${baseUrl}/item/${commentID}.json?print=pretty`);
             const comment = { ...(await response.json()), level };
+            if (comment.deleted) return { ...comment, by: 'deleted', text: 'comment deleted' };
             if (!comment.kids) return comment;
     
             const commentKidsArr = await recurse(comment.kids, level + 1);
