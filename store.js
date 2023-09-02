@@ -13,6 +13,8 @@ const initialState = {
     favorites: [],
 }
 
+// action = { type: '',payload: { favorite: story} }
+
 function favoritesReducer(state = initialState, action) {
     switch (action.type) {
         case 'ADD_FAVORITE':
@@ -26,8 +28,6 @@ function favoritesReducer(state = initialState, action) {
             return state;
     }
 }
-
-const action = { type: 'ADD_FAVORITE', payload: { favorite: { title: 'story1', id: 1 } } };
 
 const store = createStore(favoritesReducer);
 

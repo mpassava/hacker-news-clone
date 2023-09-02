@@ -1,5 +1,4 @@
 export default function Story(story) {
-    
     const domain = story.url ? `(${story.url.split('/')[2]})` : '';
     
     return `
@@ -18,9 +17,9 @@ export default function Story(story) {
                         ${story.descendants} comments
                     </a>
                     |
-                    <span class="favorite">
+                    <span class="favorite" data-story='${JSON.stringify(story)}'>
                         <img class="heart" src="../img/heart.png">
-                        Add To Favorites
+                        ${story.isFavorite ? 'Remove From Favorites' : 'Add To Favorites'}
                     </span>
                 </div>
             </div>
