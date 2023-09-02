@@ -27,9 +27,6 @@ async function getStories(path) {
         case '/show':
             path = '/showstories.json?print=pretty';
             break;
-        case '/jobs':
-            path = '/jobstories.json?print=pretty';
-            break;
         default:
             break;
     }

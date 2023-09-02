@@ -15,7 +15,7 @@ export default class RouterHandler {
             { path: '/best', page: Stories },
             { path: '/ask', page: Stories },
             { path: '/show', page: Stories },
-            { path: '/jobs', page: Stories },
+            { path: '/favorites', page: Stories },
             { path: '/item', page: Item }
         ]
 
